@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finage TradingView Chart</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <h3 id="title">Historial and Real-Time Chart Example</h3>
+    </div>
+
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="./chart.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+
+      socket.on("priceupdate", function (price) {
+        updateChart(price);
+      });
+
+      socket.on("historical", function (historicalData) {
+        loadHistoricalData(historicalData);
+      });
+    </script>
+  </body>
+</html>
