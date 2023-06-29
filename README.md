@@ -9,7 +9,7 @@ With this simple project, you can learn how to use  [Finage's](https://finage.co
 
 # Usage
 
-- Replace _FINAGE_API_KEY_ with your API key.
+- Replace _FINAGE_API_KEY_ in the `.env` file with your API key.
 - Run `npm install` to install required modules.
 - Run `node app` to run the project.
 
