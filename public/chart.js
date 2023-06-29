@@ -10,10 +10,6 @@ var chart = LightweightCharts.createChart(container, {
 
 var candleSeries = chart.addCandlestickSeries();
 
-var lastClose = 0;
-var lastIndex = 0;
-
-var currentIndex = lastIndex + 1;
 var ticksInCurrentBar = 0;
 var currentBar = {
   open: null,
@@ -48,9 +44,6 @@ async function loadHistoricalData(historicalData) {
       time: +result.t / 1000,
     });
   });
-
-  lastClose = data[data.length - 1].close;
-  lastIndex = data.length - 1;
 
   candleSeries.setData(data);
 }
