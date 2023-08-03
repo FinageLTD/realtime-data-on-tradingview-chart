@@ -7,6 +7,7 @@ const path = require("path");
 const io = new Server(server);
 const axios = require("axios");
 require("dotenv").config();
+
 const FINAGE_API_KEY = process.env.FINAGE_API_KEY;
 const symbol = "BTCUSD";
 
@@ -23,15 +24,16 @@ setInterval(async () => {
 }, 1000);
 
 async function getHistoricalData() {
-  var request = await fetch(
+  var request = await axios.get(
     "https://api.finage.co.uk/agg/crypto/" +
       symbol +
       "/1/minute/2023-06-29/2023-06-29?apikey=" +
       FINAGE_API_KEY +
-      "&limit=1440&sort=asc"
+      "&limit=20&sort=asc"
   );
-  var result = await request.json();
-  return result.results;
+
+  var result = request.data.results;
+  return result;
 }
 
 io.on("connection", async (socket) => {
